@@ -54,5 +54,11 @@ public class Quick{
 		}
 		return qSelectH(data, k, temp, max);
 	}
+	
+	public static void quicksort(int[] data) {
+		for (int i = 0; i < data.length; i++) {
+			quickselect(data, i);
+		}
+	}
 }
 		
