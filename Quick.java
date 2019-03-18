@@ -2,9 +2,10 @@ import java.util.*;
 public class Quick{
 	
 	public static void main(String[] args) {
-		int[] data = {3, 4, 5, 6, 1, 2, 9, 0};
+		/*int[] data = {3, 4, 5, 6, 1, 2, 9, 0};
 		System.out.println(partition(data, 0, 7));
 		System.out.println(Arrays.toString(data));
+		*/
 	}
 	
 	public static int partition(int[] data, int start, int end) {
@@ -17,8 +18,6 @@ public class Quick{
 	}
 	
 	public static int partitionH(int[] data, int start, int end, int pivot) {
-		System.out.println(Arrays.toString(data));
-		System.out.println(start);
 		if (start == end) {
 			if (data[start] < pivot) {
 				data[0] = data[start];
@@ -41,7 +40,19 @@ public class Quick{
 	}
 	
 	public static int quickselect(int[] data, int k) {
-		return -1;
+		return qSelectH(data, k, 0, data.length - 1);
+	}
+	
+	public static int qSelectH(int[] data, int k, int min, int max) {
+		System.out.println(k);
+		int temp = partition(data, min, max);
+		if (temp == k) {
+			return data[k];
+		}
+		if (temp > k) {
+			return qSelectH(data, k, min, temp);
+		}
+		return qSelectH(data, k, temp, max);
 	}
 }
 		
