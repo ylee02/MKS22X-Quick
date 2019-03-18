@@ -2,15 +2,15 @@ import java.util.*;
 public class Quick{
 	
 	public static void main(String[] args) {
-		/*int[] data = {3, 4, 5, 6, 1, 2, 9, 0};
-		System.out.println(partition(data, 0, 7));
+		int[] data = {3, 4, 5, 6, 1, 2, 9, 0};
+		quicksort(data);
 		System.out.println(Arrays.toString(data));
-		*/
+		
 	}
 	
 	public static int partition(int[] data, int start, int end) {
 		Random randgen = new Random();
-		int part = randgen.nextInt(end - start) + start;
+		int part = randgen.nextInt(end - start + 1) + start;
 		int pivot = data[part];
 		data[part] = data[0];
 		data[0] = pivot;
@@ -44,7 +44,6 @@ public class Quick{
 	}
 	
 	public static int qSelectH(int[] data, int k, int min, int max) {
-		System.out.println(k);
 		int temp = partition(data, min, max);
 		if (temp == k) {
 			return data[k];
@@ -52,13 +51,25 @@ public class Quick{
 		if (temp > k) {
 			return qSelectH(data, k, min, temp);
 		}
+		//System.out.println(Arrays.toString(data));
+		//System.out.println(k + " " + min + " " + max + " " + temp);
 		return qSelectH(data, k, temp, max);
 	}
 	
 	public static void quicksort(int[] data) {
+		int[] temp = new int[data.length];
 		for (int i = 0; i < data.length; i++) {
-			quickselect(data, i);
+			
+			temp[i] = quickselect(data, i);
+			System.out.println(Arrays.toString(data) );
+			System.out.println(Arrays.toString(temp) + "\n");
+			
+		}
+		for (int i = 0; i < data.length; i++) {
+			data[i] = temp[i];
 		}
 	}
+	
+	
 }
 		
