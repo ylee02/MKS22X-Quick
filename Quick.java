@@ -18,8 +18,9 @@ public class Quick{
 		return partitionH(data, start + 1, end, pivot);
 	}
 	
+	
+	
 	public static int partitionH(int[] data, int start, int end, int pivot) {
-		
 		if (start == end) {
 			if (data[start] < pivot) {
 				data[0] = data[start];
@@ -41,11 +42,36 @@ public class Quick{
 		return partitionH(data, start + 1, end, pivot);
 	}
 	
-	public static int quickselect(int[] data, int k) {
-		if (k == partition(data, 0, data.length - 1)) {
-			return data[k];
+	public static int[] copy(int[] data) {
+		int[] temp = new int[data.length];
+		for (int i =0; i < data.length; i++) {
+			temp[i] = data[i];
 		}
-		return quickselect(data, k);
+		return temp;
+	}
+	
+	public static int indexOf(int[] data, int k) {
+		for (int i = 0; i < data.length; i++) {
+			if (data[i] == k) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	public static int quickselect(int[] data, int k) {
+		int[] temp = copy(data);
+		for (int i = 0; i < temp.length; i++) {
+			
+			data[indexOf(data, temp[i])] = data[0];
+			data[0] = temp[i];
+			if (partitionH(data, 0, data.length - 1, temp[i]) == k) {
+				return data[k];
+			}
+		}
+		return -1;
+			
+		
 	}
 	
 	
